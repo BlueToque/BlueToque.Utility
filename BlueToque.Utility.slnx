@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="BlueToque.Utility.Windows/BlueToque.Utility.Windows.csproj" />
+  <Project Path="BlueToque.Utility/BlueToque.Utility.csproj" />
+</Solution>
