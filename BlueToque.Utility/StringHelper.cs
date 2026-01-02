@@ -176,7 +176,15 @@ namespace BlueToque.Utility
         /// </summary>
         /// <param name="s"></param>
         /// <returns></returns>
-        public static string MD5Hash(this string s) => BitConverter.ToString(MD5.HashData(new UnicodeEncoding().GetBytes(s)));
+        public static string MD5Hash(this string input)
+        //BitConverter.ToString(MD5.HashData(new UnicodeEncoding().GetBytes(s)));
+        {
+            using MD5 md5 = MD5.Create();
+            byte[] inputBytes = Encoding.ASCII.GetBytes(input);
+            byte[] hashBytes = md5.ComputeHash(inputBytes);
+
+            return BitConverter.ToString(hashBytes); // .NET 5 +
+        } 
 
         /// <summary>
         /// Removes any HTML markup from the string

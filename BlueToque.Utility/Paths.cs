@@ -382,8 +382,8 @@ namespace BlueToque.Utility
         //   value:
         public static void Register(string tag, string value, string description = "")
         {
-            ArgumentException.ThrowIfNullOrEmpty(tag);
-            ArgumentException.ThrowIfNullOrEmpty(value);
+            if (string.IsNullOrEmpty(tag)) throw new ArgumentNullException(nameof(tag));
+            if (string.IsNullOrEmpty(value)) throw new ArgumentNullException(nameof(value));
 
             try
             {
@@ -405,8 +405,8 @@ namespace BlueToque.Utility
         //   del:
         public static void Register(string tag, Func<string, string> del, string description = "")
         {
-            ArgumentException.ThrowIfNullOrEmpty(tag);
-            ArgumentNullException.ThrowIfNull(del);
+            if (string.IsNullOrEmpty(tag)) throw new ArgumentNullException(nameof(tag));
+            if (del == null) throw new ArgumentNullException(nameof(del));
 
             try
             {

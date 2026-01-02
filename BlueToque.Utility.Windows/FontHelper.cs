@@ -19,11 +19,7 @@ namespace BlueToque.Utility.Windows
             try
             {
                 if (!File.Exists(path))
-                {
-                    //path = Paths.Expand($"{DirectoryTags.ApplicationDirectory}\\Fonts\\{path}");
-                    //if (!File.Exists(path))
-                        return false;
-                }
+                    throw new FileNotFoundException($"Path {path} does not exist");
 
                 if (system)
                 {
@@ -45,7 +41,7 @@ namespace BlueToque.Utility.Windows
             catch (Exception ex)
             {
                 Trace.TraceError("Helper.InstallFont: Error installing font:\r\n{0}", ex);
-                return false;
+                throw;
             }
         }
     }

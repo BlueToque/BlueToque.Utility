@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace BlueToque.Utility
 {
@@ -43,7 +44,8 @@ namespace BlueToque.Utility
         //
         // Parameters:
         //   bytes:
-        public static string ToHex(this byte[] bytes) => Convert.ToHexString(bytes);
+        public static string ToHex(this byte[] bytes) => BitConverter.ToString(bytes).Replace("-","");
+        //Convert.ToHexString(bytes);
 
         //
         // Parameters:
@@ -56,7 +58,12 @@ namespace BlueToque.Utility
         //
         // Parameters:
         //   hex:
-        public static byte[] ToBytes(this string hex) => Convert.FromHexString(hex);
+        public static byte[] ToBytes(this string hex) => Enumerable.Range(0, hex.Length)
+                     .Where(x => x % 2 == 0)
+                     .Select(x => Convert.ToByte(hex.Substring(x, 2), 16))
+                     .ToArray();
+
+        //Convert.FromHexString(hex);
 
         //if (hex.IsNullOrEmpty())
         //    throw new ArgumentNullException("string is null");

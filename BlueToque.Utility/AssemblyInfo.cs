@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Reflection;
 
 namespace BlueToque.Utility
@@ -14,8 +15,7 @@ namespace BlueToque.Utility
         /// </summary>
         public AssemblyInfo()
         {
-            var assembly = Assembly.GetEntryAssembly();
-            ArgumentNullException.ThrowIfNull(assembly);
+            var assembly = Assembly.GetEntryAssembly() ?? throw new Exception("could not find entry assembly");
             Assembly = assembly;
         }
 
@@ -25,7 +25,7 @@ namespace BlueToque.Utility
         /// <param name="type"></param>
         public AssemblyInfo(Type type)
         {
-            ArgumentNullException.ThrowIfNull(type);
+            if (type == null) throw new ArgumentNullException(nameof(type));
             Assembly = type.Assembly;
         }
 
@@ -35,10 +35,9 @@ namespace BlueToque.Utility
         /// <param name="obj"></param>
         public AssemblyInfo(object obj)
         {
-            ArgumentNullException.ThrowIfNull(obj);
+            if (obj == null) throw new ArgumentNullException(nameof(obj));
             Assembly = obj.GetType().Assembly;
         }
-
 
         /// <summary>
         /// Get the assembly info for the given assembly
@@ -46,7 +45,7 @@ namespace BlueToque.Utility
         /// <param name="assembly"></param>
         public AssemblyInfo(Assembly? assembly)
         {
-            ArgumentNullException.ThrowIfNull(assembly);
+            if (assembly == null) throw new ArgumentNullException(nameof(assembly));
             Assembly = assembly;
         }
 
@@ -194,7 +193,7 @@ namespace BlueToque.Utility
         /// <returns></returns>
         public static AssemblyInfo Create(object obj)
         {
-            ArgumentNullException.ThrowIfNull(obj);
+            if (obj == null) throw new ArgumentNullException(nameof(obj));
             return new AssemblyInfo(obj.GetType());
         }
 
@@ -205,26 +204,12 @@ namespace BlueToque.Utility
         /// <returns></returns>
         public static AssemblyInfo Create(Assembly assembly)
         {
-            ArgumentNullException.ThrowIfNull(assembly);
+            if (assembly == null) throw new ArgumentNullException(nameof(assembly));
             return new AssemblyInfo(assembly);
         }
 
-        ////
-        //// Summary:
-        ////     Get the version of the assemly for the type T
-        ////
-        //// Type parameters:
-        ////   T:
-        //public static string GetVersion<T>()
-        //{
-        //    try
-        //    {
-        //        return Assembly.GetAssembly(typeof(T)).GetName().Version.ToString();
-        //    }
-        //    catch
-        //    {
-        //        return string.Empty;
-        //    }
-        //}
+        public static string? GetMetaData(Type type, string field) =>
+            type.Assembly.GetCustomAttributes<AssemblyMetadataAttribute>().Where(x => x.Key == field).FirstOrDefault()?.Value;
+
     }
 }

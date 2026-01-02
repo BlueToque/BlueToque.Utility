@@ -10,7 +10,7 @@
 	<PropertyGroup>
 		<Title>BlueToque Utility Win32</Title>
 		<Description>BlueToque Utility Methods for Windows</Description>
-		<Version>1.25.1008.0</Version>
+		<Version>1.26.0102.2</Version>
 		<Company>BlueToque Software</Company>
 		<Copyright>Copyright © BlueToque Software 2025</Copyright>
 	</PropertyGroup>

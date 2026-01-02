@@ -22,9 +22,11 @@ namespace BlueToque.Utility
                 // alternatively, throw an exception indicating the type parameter
                 // should have a private parameterless constructor
 
-                ArgumentNullException.ThrowIfNull(constructorInfo);
-                T? instance = constructorInfo.Invoke(null) as T;
-                ArgumentNullException.ThrowIfNull(instance);
+                if (constructorInfo == null)
+                    throw new ArgumentNullException(nameof(constructorInfo));
+
+                if (constructorInfo.Invoke(null) is not T instance)
+                    throw new ApplicationException("instance");
                 return instance;
             }
 

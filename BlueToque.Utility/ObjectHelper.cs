@@ -64,7 +64,9 @@ public static class ObjectHelper
 
     private static T? DeepClone<T>(this T? original, Dictionary<object, object> copies, params object[] args)
     {
-        ArgumentNullException.ThrowIfNull(original);
+        if(original==null)
+            throw new ArgumentNullException(nameof(original));  
+
         Type type = original.GetType();
         if (copies.TryGetValue(original, out var value))
             return (T)value;
@@ -224,7 +226,7 @@ public static class ObjectHelper
     /// <returns></returns>
     public static string? ToNameValue(this object obj, char elementSeperator = ',', char pairSeperator = '=')
     {
-        ArgumentNullException.ThrowIfNull(obj);
+        if (obj == null) throw new ArgumentNullException(nameof(obj));
 
         StringBuilder stringBuilder = new();
         Type type = obj.GetType();
@@ -292,7 +294,9 @@ public static class ObjectHelper
     /// <returns></returns>
     public static T? GetPropValue<T>(this object src, string propName)
     {
-        ArgumentNullException.ThrowIfNull(src);
+        if (src == null) 
+            throw new ArgumentNullException(nameof(src));
+
         try
         {
             PropertyInfo? property = src.GetType().GetProperty(propName);
@@ -313,15 +317,10 @@ public static class ObjectHelper
     /// <param name="value"></param>
     public static void SetPropValue<T>(this object src, string propName, T value)
     {
-        ArgumentNullException.ThrowIfNull(src);
-        try
-        {
-            var property = src.GetType().GetProperty(propName);
-            property?.SetValue(src, value);
-        }
-        catch
-        {
-        }
+        if (src == null)
+            throw new ArgumentNullException(nameof(src));
+
+        src.GetType().GetProperty(propName)?.SetValue(src, value);
     }
 
 }

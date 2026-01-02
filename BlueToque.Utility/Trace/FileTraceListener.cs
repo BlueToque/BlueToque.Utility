@@ -36,11 +36,7 @@ namespace BlueToque.Utility
         /// <para>Initializes a new instance of the <see cref='BlueToque.Utility.FileTraceListener'/> class with the
         ///    specified name and using the stream as the recipient of the debugging and tracing output.</para>
         /// </devdoc>
-        public FileTraceListener(Stream stream, string? name) : base(name)
-        {
-            ArgumentNullException.ThrowIfNull(stream);
-            m_writer = new StreamWriter(stream);
-        }
+        public FileTraceListener(Stream stream, string? name) : base(name) => m_writer = new StreamWriter(stream);
 
         /// <devdoc>
         /// <para>Initializes a new instance of the <see cref='BlueToque.Utility.FileTraceListener'/> class using the
@@ -54,11 +50,7 @@ namespace BlueToque.Utility
         ///    debugging
         ///    output.</para>
         /// </devdoc>
-        public FileTraceListener(TextWriter writer, string? name) : base(name)
-        {
-            ArgumentNullException.ThrowIfNull(writer);
-            m_writer = writer;
-        }
+        public FileTraceListener(TextWriter writer, string? name) : base(name) => m_writer = writer;
 
         /// <devdoc>
         ///    <para>Initializes a new instance of the <see cref='BlueToque.Utility.FileTraceListener'/> class with the

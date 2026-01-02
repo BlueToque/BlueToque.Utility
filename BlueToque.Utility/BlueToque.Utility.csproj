@@ -1,15 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>net10.0</TargetFramework>
+		<TargetFramework>netstandard2.1</TargetFramework>
 		<ImplicitUsings>disable</ImplicitUsings>
 		<Nullable>enable</Nullable>
+		<LangVersion>latest</LangVersion>
 	</PropertyGroup>
-	
+
 	<PropertyGroup>
 		<Title>BlueToque Utility</Title>
 		<Description>BlueToque Utility Methods</Description>
-		<Version>1.25.1008.0</Version>
+		<Version>1.26.0102.1</Version>
 		<Company>BlueToque Software</Company>
 		<Copyright>Copyright © BlueToque Software 2025</Copyright>
 	</PropertyGroup>
@@ -18,5 +19,9 @@
 		<SignAssembly>True</SignAssembly>
 		<AssemblyOriginatorKeyFile>Properties\BlueToque.Utility.snk</AssemblyOriginatorKeyFile>
 	</PropertyGroup>
+
+	<ItemGroup>
+		<Compile Remove="AssemblyLoader.cs" />
+	</ItemGroup>
 
 </Project>

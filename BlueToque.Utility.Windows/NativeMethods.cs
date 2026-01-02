@@ -5,6 +5,16 @@ namespace BlueToque.Utility.Windows
 {
     public static class NativeMethods
     {
+        internal const int ATTACH_PARENT_PROCESS = -1;
+
+        [DllImport("kernel32.dll", SetLastError = true)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        internal static extern bool AllocConsole();
+
+        [DllImport("kernel32.dll")]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        internal static extern bool AttachConsole(int pid);
+
         [DllImport("gdi32.dll", EntryPoint = "AddFontResourceW", SetLastError = true)]
         internal static extern int AddFontResource([In][MarshalAs(UnmanagedType.LPWStr)] string lpFileName);
 

@@ -19,7 +19,7 @@ namespace BlueToque.Utility
 
             try
             {
-                return directoryInfo.GetFiles("*.*", SearchOption.AllDirectories).Sum((FileInfo a) => a.Length);
+                return directoryInfo.GetFiles("*.*", SearchOption.AllDirectories).Sum(a => a.Length);
             }
             catch (Exception ex)
             {

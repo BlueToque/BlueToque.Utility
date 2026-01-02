@@ -250,6 +250,18 @@ namespace BlueToque.Utility.Windows
             }
         }
 
+        /// <summary>
+        /// Convert bytes to an icon
+        /// </summary>
+        /// <param name="bytes"></param>
+        /// <returns></returns>
+        public static Icon? ToIcon(this byte[]? bytes)
+        {
+            if (bytes == null || bytes.Length == 0) return null;
+            using var stream = new MemoryStream(bytes);
+            return new Icon(stream);
+        }
+
         //
         // Parameters:
         //   url:
@@ -370,6 +382,25 @@ namespace BlueToque.Utility.Windows
         // Parameters:
         //   url:
         public static Image? LoadFromResource(string url) => LoadFromResource(new Uri(url));
+
+        static Image? s_transparent;
+
+        /// <summary>
+        /// generate a transparent image
+        /// </summary>
+        /// <returns></returns>
+        public static Image Transparent()
+        {
+            if (s_transparent == null)
+            {
+                // make a transparent image
+                s_transparent = new Bitmap(20, 20);
+                using Graphics g = Graphics.FromImage(s_transparent);
+                g.FillRectangle(Brushes.Transparent, 0, 0, 20, 20);
+            }
+
+            return s_transparent;
+        }
     }
 
 }
