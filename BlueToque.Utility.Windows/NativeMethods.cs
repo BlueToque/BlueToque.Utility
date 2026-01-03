@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Runtime.InteropServices;
+using System.Text;
 
 namespace BlueToque.Utility.Windows
 {
@@ -120,35 +121,35 @@ namespace BlueToque.Utility.Windows
         [DllImport("User32.dll")]
         internal static extern int DestroyIcon(IntPtr hIcon);
 
-        //#region GetVersion
+        #region GetVersion
 
-        ///// <summary>
-        ///// P/Invoke 
-        ///// </summary>
-        //[StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
-        //internal struct OSVERSIONINFOEX
-        //{
-        //    public uint dwOSVersionInfoSize;
-        //    public uint dwMajorVersion;
-        //    public uint dwMinorVersion;
-        //    public uint dwBuildNumber;
-        //    public uint dwPlatformId;
-        //    [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 0x80)]
-        //    public string szCSDVersion;
-        //    public ushort wServicePackMajor;
-        //    public ushort wServicePackMinor;
-        //    public ushort wSuiteMask;
-        //    public byte wProductType;
-        //    public byte wReserved;
+        /// <summary>
+        /// P/Invoke 
+        /// </summary>
+        [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
+        internal struct OSVERSIONINFOEX
+        {
+            public uint dwOSVersionInfoSize;
+            public uint dwMajorVersion;
+            public uint dwMinorVersion;
+            public uint dwBuildNumber;
+            public uint dwPlatformId;
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 0x80)]
+            public string szCSDVersion;
+            public ushort wServicePackMajor;
+            public ushort wServicePackMinor;
+            public ushort wSuiteMask;
+            public byte wProductType;
+            public byte wReserved;
 
-        //    public static int GetSizeOf() => Marshal.SizeOf(typeof(OSVERSIONINFOEX));
-        //}
+            public static int GetSizeOf() => Marshal.SizeOf(typeof(OSVERSIONINFOEX));
+        }
 
-        //[return: MarshalAs(UnmanagedType.Bool)]
-        //[DllImport("kernel32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
-        //internal static extern bool GetVersionEx(ref OSVERSIONINFOEX lpVersionInfo);
+        [return: MarshalAs(UnmanagedType.Bool)]
+        [DllImport("kernel32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
+        internal static extern bool GetVersionEx(ref OSVERSIONINFOEX lpVersionInfo);
 
-        //#endregion
+        #endregion
 
         //#region GetSystemMetrics
 
@@ -706,42 +707,42 @@ namespace BlueToque.Utility.Windows
         //#region For Single Instance
 
 
-        //[DllImport("user32")]
-        //internal static extern bool PostMessage(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam);
+        [DllImport("user32")]
+        internal static extern bool PostMessage(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam);
 
-        //[DllImport("User32.dll", SetLastError = true, EntryPoint = "SendMessage")]
-        //internal static extern IntPtr SendMessage(IntPtr hWnd, int Msg, int wParam, ref COPYDATASTRUCT lParam);
+        [DllImport("User32.dll", SetLastError = true, EntryPoint = "SendMessage")]
+        internal static extern IntPtr SendMessage(IntPtr hWnd, int Msg, int wParam, ref COPYDATASTRUCT lParam);
 
-        //[DllImport("user32")]
-        //internal static extern int RegisterWindowMessage(string message);
+        [DllImport("user32")]
+        internal static extern int RegisterWindowMessage(string message);
 
         //[DllImport("User32.dll", EntryPoint = "FindWindow")]
         //internal static extern IntPtr FindWindow(String lpClassName, String lpWindowName);
 
-        //[DllImport("user32.dll", CharSet = CharSet.Unicode)]
-        //internal static extern int GetWindowText(IntPtr hWnd, StringBuilder strText, int maxCount);
+        [DllImport("user32.dll", CharSet = CharSet.Unicode)]
+        internal static extern int GetWindowText(IntPtr hWnd, StringBuilder strText, int maxCount);
 
-        //[DllImport("user32.dll", CharSet = CharSet.Unicode)]
-        //internal static extern int GetWindowTextLength(IntPtr hWnd);
+        [DllImport("user32.dll", CharSet = CharSet.Unicode)]
+        internal static extern int GetWindowTextLength(IntPtr hWnd);
 
-        //[StructLayout(LayoutKind.Sequential)]
-        //internal struct COPYDATASTRUCT
-        //{
-        //    public IntPtr dwData;
-        //    public int cbData;
-        //    public IntPtr lpData;
-        //}
+        [StructLayout(LayoutKind.Sequential)]
+        internal struct COPYDATASTRUCT
+        {
+            public IntPtr dwData;
+            public int cbData;
+            public IntPtr lpData;
+        }
 
-        //[DllImport("user32.dll")]
-        //internal static extern bool EnumWindows(EnumWindowsProc enumProc, IntPtr lParam);
+        [DllImport("user32.dll")]
+        internal static extern bool EnumWindows(EnumWindowsProc enumProc, IntPtr lParam);
 
-        ///// <summary>
-        ///// Delegate to filter which windows to include 
-        ///// </summary>
-        ///// <param name="hWnd"></param>
-        ///// <param name="lParam"></param>
-        ///// <returns></returns>
-        //internal delegate bool EnumWindowsProc(IntPtr hWnd, IntPtr lParam);
+        /// <summary>
+        /// Delegate to filter which windows to include 
+        /// </summary>
+        /// <param name="hWnd"></param>
+        /// <param name="lParam"></param>
+        /// <returns></returns>
+        internal delegate bool EnumWindowsProc(IntPtr hWnd, IntPtr lParam);
 
         //#endregion
     }

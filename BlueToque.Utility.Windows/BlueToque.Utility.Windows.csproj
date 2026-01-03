@@ -10,7 +10,7 @@
 	<PropertyGroup>
 		<Title>BlueToque Utility Win32</Title>
 		<Description>BlueToque Utility Methods for Windows</Description>
-		<Version>1.26.0102.2</Version>
+		<Version>1.26.0102.3</Version>
 		<Company>BlueToque Software</Company>
 		<Copyright>Copyright © BlueToque Software 2025</Copyright>
 	</PropertyGroup>
@@ -19,6 +19,10 @@
 		<SignAssembly>True</SignAssembly>
 		<AssemblyOriginatorKeyFile>Properties\BlueToque.Utility.Windows.snk</AssemblyOriginatorKeyFile>
 	</PropertyGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="System.Management" Version="10.0.1" />
+	</ItemGroup>
 
 	<ItemGroup>
 	  <ProjectReference Include="..\BlueToque.Utility\BlueToque.Utility.csproj" />
