@@ -424,7 +424,7 @@ namespace BlueToque.Utility
         //
         // Parameters:
         //   path:
-        public static string Expand(string path)
+        public static string Expand(string? path)
         {
             if (string.IsNullOrEmpty(path))
                 return string.Empty;

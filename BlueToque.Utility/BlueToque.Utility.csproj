@@ -10,7 +10,7 @@
 	<PropertyGroup>
 		<Title>BlueToque Utility</Title>
 		<Description>BlueToque Utility Methods</Description>
-		<Version>1.26.0102.1</Version>
+		<Version>1.26.0105</Version>
 		<Company>BlueToque Software</Company>
 		<Copyright>Copyright © BlueToque Software 2025</Copyright>
 	</PropertyGroup>
