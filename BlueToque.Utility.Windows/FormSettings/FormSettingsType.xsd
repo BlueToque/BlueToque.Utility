@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="FormSettingsType"
+    targetNamespace="http://BlueToque.ca/TrueNorth.Meridian/FormSettingsType"
+    elementFormDefault="qualified"
+    xmlns="http://BlueToque.ca/TrueNorth.Meridian/FormSettingsType"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+  <xs:complexType name="FormSettingsType">
+    <xs:sequence>
+
+      <xs:element name="State" type="xs:int" />
+      <xs:element name="LocationX" type="xs:int" />
+      <xs:element name="LocationY" type="xs:int" />
+      <xs:element name="SizeWidth" type="xs:int" />
+      <xs:element name="SizeHeight" type="xs:int" />
+      
+    </xs:sequence>
+  </xs:complexType>
+  
+</xs:schema>
