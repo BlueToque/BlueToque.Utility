@@ -31,6 +31,8 @@
 
     public class SystemIdentity : Singleton<SystemIdentity> 
     {
+        private SystemIdentity() { }
+
         public IIdentityProvider Provider { get; private set; } = new DefaultProvider();
 
         public void Register(IIdentityProvider provider) => Provider = provider;
